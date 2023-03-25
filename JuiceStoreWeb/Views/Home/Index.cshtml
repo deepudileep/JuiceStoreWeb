@@ -1,0 +1,108 @@
+﻿@model JuiceStoreWeb.Models.FruitPressRequest
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h4>FruitPressRequest</h4>
+<hr />
+<div class="row">
+    <div class="card shadow-none border border-300 my-5 col-md-8">
+        <table class="table table-active">
+            <thead>
+                <tr>
+                    <th>
+                        Apple Lemonade
+                    </th>
+                    <th>
+                        Melon Lemonade
+                    </th>
+                    <th>
+                        Orange Lemonade
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Price per glass 10
+                    </td>
+                    <td>
+                        Price per glass 12
+                    </td>
+                    <td>
+                        Price per glass 9
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Fruit needed per glass 2,5 apple(s)
+                    </td>
+                    <td>
+                        Fruit needed per glass 0,5 melons(s)
+                    </td>
+                    <td>
+                        Fruit needed per glass 1 Orange(s)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <form asp-action="Index">
+            @if (Model.FruitPressResult != null)
+            {
+                <div class="alert alert-warning">
+                    <span class="text-danger">@Model.FruitPressResult.ResultMoney</span><br />
+                    <span class="text-danger">@Model.FruitPressResult.ResultGlass</span>
+                </div>
+
+            }
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RecipieID" class="control-label"></label>
+                <select asp-for="RecipieID" name="RecipieID" class="form-control" asp-items="@Model.RecipieList"></select>
+                <span asp-validation-for="RecipieID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderQuantity" class="control-label"></label>
+                <input asp-for="OrderQuantity" class="form-control" />
+                <span asp-validation-for="OrderQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoneyPaid" class="control-label"></label>
+                <input asp-for="MoneyPaid" class="form-control" />
+                <span asp-validation-for="MoneyPaid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplesAdded" class="control-label"></label>
+                <input asp-for="ApplesAdded" class="form-control" />
+                <span asp-validation-for="ApplesAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MelonAdded" class="control-label"></label>
+                <input asp-for="MelonAdded" class="form-control" />
+                <span asp-validation-for="MelonAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrangeAdded" class="control-label"></label>
+                <input asp-for="OrangeAdded" class="form-control" />
+                <span asp-validation-for="OrangeAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Process Order" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
